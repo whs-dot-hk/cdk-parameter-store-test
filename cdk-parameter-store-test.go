@@ -2,9 +2,9 @@ package main
 
 import (
 	"github.com/aws/aws-cdk-go/awscdk/v2"
-	// "github.com/aws/aws-cdk-go/awscdk/v2/awssqs"
+	"github.com/aws/aws-cdk-go/awscdk/v2/awsssm"
 	"github.com/aws/constructs-go/constructs/v10"
-	// "github.com/aws/jsii-runtime-go"
+	"github.com/aws/jsii-runtime-go"
 )
 
 type CdkParameterStoreTestStackProps struct {
@@ -19,6 +19,10 @@ func NewCdkParameterStoreTestStack(scope constructs.Construct, id string, props 
 	stack := awscdk.NewStack(scope, &id, &sprops)
 
 	// The code that defines your stack goes here
+	awsssm.NewStringParameter(stack, jsii.String("Parameter"), &awsssm.StringParameterProps{
+		ParameterName: jsii.String("test"),
+		StringValue:   jsii.String("test"),
+	})
 
 	// example resource
 	// queue := awssqs.NewQueue(stack, jsii.String("CdkParameterStoreTestQueue"), &awssqs.QueueProps{
